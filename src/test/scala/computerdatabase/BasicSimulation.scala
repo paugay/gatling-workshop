@@ -3,8 +3,6 @@ package computerdatabase
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
-import scala.concurrent.duration._
-
 class BasicSimulation extends Simulation {
 
   val httpProtocol = http
@@ -18,41 +16,30 @@ class BasicSimulation extends Simulation {
 		// Search
 		.exec(http("request_0")
 			.get("/computers"))
-		.pause(11)
 		.exec(http("request_1")
 			.get("/computers?f=macbook"))
-		.pause(9)
 		.exec(http("request_2")
 			.get("/computers/6"))
-		.pause(11)
 
 		// Browse
 		.exec(http("request_3")
 			.get("/"))
-		.pause(13)
 		.exec(http("request_4")
 			.get("/computers?p=1"))
-		.pause(1)
 		.exec(http("request_5")
 			.get("/computers?p=2"))
-		.pause(547 milliseconds)
 		.exec(http("request_6")
 			.get("/computers?p=3"))
-		.pause(529 milliseconds)
 		.exec(http("request_7")
 			.get("/computers?p=4"))
-		.pause(402 milliseconds)
 		.exec(http("request_8")
 			.get("/computers?p=5"))
-		.pause(392 milliseconds)
 		.exec(http("request_9")
 			.get("/computers?p=6"))
-		.pause(7)
 
 		// Edit
 		.exec(http("request_10")
 			.get("/computers/new"))
-    .pause(33)
     .exec(http("request_11")
       .post("/computers")
       .formParam("name", "Pau's laptop")
